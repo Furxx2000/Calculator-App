@@ -1,0 +1,180 @@
+// -------------Theme 1-------------
+// Background color
+
+body.theme-1 {
+  --main-bg: hsl(222, 26%, 31%);
+  --keypad-bg: hsl(223, 31%, 20%);
+  --screen-bg: hsl(224, 36%, 15%);
+  --bg-key-1: hsl(30, 25%, 89%);
+  --bg-key-1-shadow: hsl(28, 16%, 65%);
+  --bg-key-2: hsl(225, 21%, 49%);
+  --bg-key-2-shadow: hsl(224, 28%, 35%);
+  --bg-key-3: hsl(6, 63%, 50%);
+  --bg-key-3-shadow: hsl(6, 70%, 34%);
+  --text-header: hsl(0, 0%, 100%);
+  --text-key-1: hsl(221, 14%, 31%);
+  --text-key-2: hsl(0, 0%, 100%);
+}
+
+body.theme-2 {
+  --main-bg: hsl(0, 0%, 90%);
+  --keypad-bg: hsl(0, 5%, 81%);
+  --screen-bg: hsl(0, 0%, 93%);
+  --bg-key-1: hsl(45, 7%, 89%);
+  --bg-key-1-shadow: hsl(35, 11%, 61%);
+  --bg-key-2: hsl(185, 42%, 37%);
+  --bg-key-2-shadow: hsl(185, 58%, 25%);
+  --bg-key-3: hsl(25, 98%, 40%);
+  --bg-key-3-shadow: hsl(25, 99%, 27%);
+  --text-header: hsl(60, 10%, 19%);
+  --text-key-1: hsl(60, 10%, 19%);
+  --text-key-2: hsl(0, 0%, 100%);
+}
+
+body.theme-3 {
+  --main-bg: hsl(268, 75%, 9%);
+  --keypad-bg: hsl(268, 71%, 12%);
+  --screen-bg: hsl(268, 71%, 12%);
+  --bg-key-1: hsl(268, 47%, 21%);
+  --bg-key-1-shadow: hsl(290, 70%, 36%);
+  --bg-key-2: hsl(281, 89%, 26%);
+  --bg-key-2-shadow: hsl(285, 91%, 52%);
+  --bg-key-3: hsl(176, 100%, 44%);
+  --bg-key-3-shadow: hsl(177, 92%, 70%);
+  --text-header: hsl(52, 100%, 62%);
+  --text-key-1: hsl(52, 100%, 62%);
+  --text-key-2: hsl(0, 0%, 100%);
+  --text-key-3: hsl(198, 20%, 13%);
+}
+
+// $theme-1: (
+//   "main-bg": hsl(222, 26%, 31%),
+//   "keypad-bg": hsl(223, 31%, 20%),
+//   "screen-bg": hsl(224, 36%, 15%),
+//   "bg-key-1": hsl(30, 25%, 89%),
+//   "bg-key-1-shadow": hsl(28, 16%, 65%),
+//   "bg-key-2": hsl(225, 21%, 49%),
+//   "bg-key-2-shadow": hsl(224, 28%, 35%),
+//   "bg-key-3": hsl(6, 63%, 50%),
+//   "bg-key-3-shadow": hsl(6, 70%, 34%),
+//   "text-header": hsl(0, 0%, 100%),
+//   "text-key-1": hsl(221, 14%, 31%),
+//   "text-key-2": hsl(0, 0%, 100%),
+// );
+
+// $theme-2: (
+//   "main-bg": hsl(0, 0%, 90%),
+//   "keypad-bg": hsl(0, 5%, 81%),
+//   "screen-bg": hsl(0, 0%, 93%),
+//   "bg-key-1": hsl(45, 7%, 89%),
+//   "bg-key-1-shadow": hsl(35, 11%, 61%),
+//   "bg-key-2": hsl(185, 42%, 37%),
+//   "bg-key-2-shadow": hsl(185, 58%, 25%),
+//   "bg-key-3": hsl(25, 98%, 40%),
+//   "bg-key-3-shadow": hsl(25, 99%, 27%),
+//   "text-header": hsl(60, 10%, 19%),
+//   "text-key-1": hsl(60, 10%, 19%),
+//   "text-key-2": hsl(0, 0%, 100%),
+// );
+
+// $theme-3: (
+//   "main-bg": hsl(268, 75%, 9%),
+//   "keypad-bg": hsl(268, 71%, 12%),
+//   "screen-bg": hsl(268, 71%, 12%),
+//   "bg-key-1": hsl(268, 47%, 21%),
+//   "bg-key-1-shadow": hsl(290, 70%, 36%),
+//   "bg-key-2": hsl(281, 89%, 26%),
+//   "bg-key-2-shadow": hsl(285, 91%, 52%),
+//   "bg-key-3": hsl(176, 100%, 44%),
+//   "bg-key-3-shadow": hsl(177, 92%, 70%),
+//   "text-header": hsl(52, 100%, 62%),
+//   "text-key-1": hsl(52, 100%, 62%),
+//   "text-key-2": hsl(0, 0%, 100%),
+//   "text-key-3": hsl(198, 20%, 13%),
+// );
+
+// @function curTheme($theme) {
+//   @if $theme == "theme-1" {
+//     @return $theme-1;
+//   }
+//   @if $theme == "theme-2" {
+//     @return $theme-2;
+//   }
+//   @if $theme == "theme-3" {
+//     @return $theme-3;
+//   } @else {
+//     @return $theme-1;
+//   }
+// }
+
+// @function theme-color($theme, $key) {
+//   @return map-get($theme, $key);
+// }
+
+$fs-400: 1.25rem;
+$fs-300: 1rem;
+$fs-200: 0.875rem;
+
+// -------------Typo-------------
+$fs: 32px;
+
+// ------------Breakpoint-----------
+@mixin desktop {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+// ----------Custom--------------
+
+@mixin container($padding-top, $padding-bottom, $max-width) {
+  padding: $padding-top $padding-bottom;
+  max-width: $max-width;
+}
+
+@mixin flex($gap) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin grid($gap) {
+  display: grid;
+  gap: $gap;
+}
+
+@mixin fontSize($fs) {
+  font-size: $fs;
+}
+
+@mixin keyType-1($area) {
+  grid-area: $area;
+  color: var(--text-key-1);
+  background-color: var(--bg-key-1);
+  box-shadow: 0 4px var(--bg-key-1-shadow);
+}
+
+@mixin keyType-2($area) {
+  grid-area: $area;
+  color: var(--text-key-2);
+  background-color: var(--bg-key-2);
+  box-shadow: 0 4px var(--bg-key-2-shadow);
+}
+
+@mixin keyType-3($area) {
+  grid-area: $area;
+  color: var(--text-key-2);
+  background-color: var(--bg-key-3);
+  box-shadow: 0 4px var(--bg-key-3-shadow);
+}
+
+.flex {
+  @include flex(0.5rem);
+}
+
+.grid {
+  @include grid(0.5rem);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
