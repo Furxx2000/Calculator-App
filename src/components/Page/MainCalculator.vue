@@ -61,7 +61,6 @@ function getKey(val: string) {
     return;
 
   inputVal.curVal += val;
-  console.log(inputVal.curVal.length);
 }
 
 function calculate(val: number, operator: string): void {
@@ -78,8 +77,6 @@ function calculate(val: number, operator: string): void {
 </script>
 
 <style lang="scss" scoped>
-
-
 .calculator {
   height: 100vh;
   margin: 0 auto;
