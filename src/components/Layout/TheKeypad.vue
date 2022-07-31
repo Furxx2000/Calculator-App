@@ -9,6 +9,13 @@ function keyClick(e: MouseEvent) {
     target.tagName.toLowerCase() === "button" ? target : target.parentElement!;
   const action = buttonEl?.textContent;
   const btnContainer = buttonEl.closest("section");
+
+  if (
+    target.tagName.toLowerCase() !== "button" &&
+    target.tagName.toLowerCase() !== "p"
+  )
+    return;
+
   if (action === "+" || action === "-" || action === "x" || action === "/") {
     btnContainer
       ?.querySelector("[aria-selected='true']")
@@ -19,7 +26,7 @@ function keyClick(e: MouseEvent) {
       ?.querySelector("[aria-selected='true']")
       ?.setAttribute("aria-selected", "false");
   }
-  if (buttonEl.tagName.toLowerCase() === "section") return;
+
   emit("get-key", action);
 }
 </script>
@@ -121,6 +128,7 @@ button:active {
 button[aria-selected="true"] {
   transform: translateY(4px);
   box-shadow: none;
+  background-color: var(--bg-key-1-shadow);
 }
 
 section > button > p {
