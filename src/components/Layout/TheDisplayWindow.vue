@@ -10,7 +10,9 @@ interface Props {
 const props = defineProps<Props>();
 const { inputVal } = toRefs(props);
 const val = computed(() => {
-  return new Intl.NumberFormat("zh-TW").format(+inputVal.value);
+  return new Intl.NumberFormat("zh-TW", {
+    maximumSignificantDigits: 10,
+  }).format(+inputVal.value);
 });
 </script>
 
