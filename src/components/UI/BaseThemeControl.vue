@@ -98,6 +98,7 @@ function changeTheme(): void {
     height: 16px;
     border-radius: 50%;
     background-color: var(--bg-key-3);
+    cursor: pointer;
   }
 }
 </style>
