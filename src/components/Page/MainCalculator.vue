@@ -34,7 +34,10 @@ function initialize(isInitializeCurVal = false) {
 
 function getKey(val: string) {
   if (val === "+" || val === "-" || val === "x" || val === "/") {
-    if (inputVal.isTyping) return;
+    if (inputVal.isTyping) {
+      inputVal.lastOperator = val;
+      return;
+    }
 
     inputVal.isTyping = true;
 
