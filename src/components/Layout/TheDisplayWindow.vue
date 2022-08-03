@@ -17,7 +17,7 @@ const val = computed(() => {
 </script>
 
 <template>
-  <div type="text">{{ val }}</div>
+  <div>{{ val }}</div>
 </template>
 
 <style lang="scss" scoped>
