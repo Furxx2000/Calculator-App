@@ -32,7 +32,7 @@ function keyClick(e: MouseEvent) {
 </script>
 
 <template>
-  <section @click="keyClick">
+  <section @click="keyClick" role="tablist">
     <button class="seven" aria-selected="false" role="tab" tabindex="-1">
       <span>7</span>
     </button>
