@@ -33,63 +33,58 @@ function keyClick(e: MouseEvent) {
 
 <template>
   <section @click="keyClick">
-    <button class="seven" aria-selected="false" role="button" tabindex="-1">
+    <button class="seven" aria-selected="false" tabindex="-1">
       <span>7</span>
     </button>
-    <button class="eight" aria-selected="false" role="button" tabindex="-1">
+    <button class="eight" aria-selected="false" tabindex="-1">
       <span>8</span>
     </button>
-    <button class="nine" aria-selected="false" role="button" tabindex="-1">
+    <button class="nine" aria-selected="false" tabindex="-1">
       <span>9</span>
     </button>
     <button class="delete uppercase">
       <span>del</span>
     </button>
-    <button class="four" aria-selected="false" role="button" tabindex="-1">
+    <button class="four" aria-selected="false" tabindex="-1">
       <span>4</span>
     </button>
-    <button class="five" aria-selected="false" role="button" tabindex="-1">
+    <button class="five" aria-selected="false" tabindex="-1">
       <span>5</span>
     </button>
-    <button class="six" aria-selected="false" role="button" tabindex="-1">
+    <button class="six" aria-selected="false" tabindex="-1">
       <span>6</span>
     </button>
-    <button class="plus" aria-selected="false" role="button" tabindex="-1">
+    <button class="plus" aria-selected="false" tabindex="-1">
       <span>+</span>
     </button>
-    <button class="one" aria-selected="false" role="button" tabindex="-1">
+    <button class="one" aria-selected="false" tabindex="-1">
       <span>1</span>
     </button>
-    <button class="two" aria-selected="false" role="button" tabindex="-1">
+    <button class="two" aria-selected="false" tabindex="-1">
       <span>2</span>
     </button>
-    <button class="three" aria-selected="false" role="button" tabindex="-1">
+    <button class="three" aria-selected="false" tabindex="-1">
       <span>3</span>
     </button>
-    <button class="minus" aria-selected="false" role="button" tabindex="-1">
+    <button class="minus" aria-selected="false" tabindex="-1">
       <span>-</span>
     </button>
-    <button class="dot" aria-selected="false" role="button" tabindex="-1">
+    <button class="dot" aria-selected="false" tabindex="-1">
       <span>.</span>
     </button>
-    <button class="zero" aria-selected="false" role="button" tabindex="-1">
+    <button class="zero" aria-selected="false" tabindex="-1">
       <span>0</span>
     </button>
-    <button class="slash" aria-selected="false" role="button" tabindex="-1">
+    <button class="slash" aria-selected="false" tabindex="-1">
       <span>/</span>
     </button>
-    <button class="multiply" aria-selected="false" role="button" tabindex="-1">
+    <button class="multiply" aria-selected="false" tabindex="-1">
       <span>x</span>
     </button>
-    <button
-      class="reset uppercase"
-      aria-selected="false"
-      role="button"
-      tabindex="-1"
-    >
+    <button class="reset uppercase" aria-selected="false" tabindex="-1">
       <span>reset</span>
     </button>
-    <button class="equal" aria-selected="false" role="button" tabindex="-1">
+    <button class="equal" aria-selected="false" tabindex="-1">
       <span>=</span>
     </button>
   </section>
