@@ -34,58 +34,58 @@ function keyClick(e: MouseEvent) {
 <template>
   <section @click="keyClick">
     <button class="seven" aria-selected="false">
-      <p>7</p>
+      <span>7</span>
     </button>
     <button class="eight" aria-selected="false">
-      <p>8</p>
+      <span>8</span>
     </button>
     <button class="nine" aria-selected="false">
-      <p>9</p>
+      <span>9</span>
     </button>
     <button class="delete uppercase">
-      <p>del</p>
+      <span>del</span>
     </button>
     <button class="four" aria-selected="false">
-      <p>4</p>
+      <span>4</span>
     </button>
     <button class="five" aria-selected="false">
-      <p>5</p>
+      <span>5</span>
     </button>
     <button class="six" aria-selected="false">
-      <p>6</p>
+      <span>6</span>
     </button>
     <button class="plus" aria-selected="false">
-      <p>+</p>
+      <span>+</span>
     </button>
     <button class="one" aria-selected="false">
-      <p>1</p>
+      <span>1</span>
     </button>
     <button class="two" aria-selected="false">
-      <p>2</p>
+      <span>2</span>
     </button>
     <button class="three" aria-selected="false">
-      <p>3</p>
+      <span>3</span>
     </button>
     <button class="minus" aria-selected="false">
-      <p>-</p>
+      <span>-</span>
     </button>
     <button class="dot" aria-selected="false">
-      <p>.</p>
+      <span>.</span>
     </button>
     <button class="zero" aria-selected="false">
-      <p>0</p>
+      <span>0</span>
     </button>
     <button class="slash" aria-selected="false">
-      <p>/</p>
+      <span>/</span>
     </button>
     <button class="multiply" aria-selected="false">
-      <p>x</p>
+      <span>x</span>
     </button>
     <button class="reset uppercase" aria-selected="false">
-      <p>reset</p>
+      <span>reset</span>
     </button>
     <button class="equal" aria-selected="false">
-      <p>=</p>
+      <span>=</span>
     </button>
   </section>
 </template>
@@ -131,7 +131,7 @@ button[aria-selected="true"] {
   background-color: var(--bg-key-1-shadow);
 }
 
-section > button > p {
+section > button > span {
   position: absolute;
   place-self: center;
   padding-top: 6px;
