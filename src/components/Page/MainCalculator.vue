@@ -112,7 +112,7 @@ function calculateTotalValue(val: number, operator: string): void {
   @include container(2rem, 1.5rem, 40rem);
   @include grid(1.5rem);
   @include desktop {
-    @include container(10rem, 1.5rem, 35rem);
+    @include container(15vh, 1.5rem, 35rem);
   }
 }
 </style>
