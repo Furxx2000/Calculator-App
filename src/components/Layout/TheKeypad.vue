@@ -12,7 +12,7 @@ function keyClick(e: MouseEvent) {
 
   if (
     target.tagName.toLowerCase() !== "button" &&
-    target.tagName.toLowerCase() !== "p"
+    target.tagName.toLowerCase() !== "span"
   )
     return;
 
