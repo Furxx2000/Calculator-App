@@ -174,7 +174,3 @@ $fs: 32px;
 .grid {
   @include grid(0.5rem);
 }
-
-.uppercase {
-  text-transform: uppercase;
-}
