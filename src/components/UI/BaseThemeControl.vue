@@ -63,11 +63,14 @@ function changeTheme(): void {
 <style lang="scss" scoped>
 .theme-control {
   @include flex(2rem);
+  align-items: flex-end;
 
   h4 {
+    margin-bottom: 0.1rem;
     font-size: 12px;
     letter-spacing: 1.75px;
     color: var(--text-header);
+    text-transform: uppercase;
   }
 
   .theme--panel {
@@ -75,12 +78,15 @@ function changeTheme(): void {
 
     .number {
       @include flex(0.5rem);
+      @include fontSize($fs-200);
       justify-content: space-between;
       padding-inline: 0.5rem;
-      @include fontSize($fs-200);
 
       span {
         color: var(--text-header);
+        @include desktop {
+          font-size: 16px;
+        }
       }
     }
   }
