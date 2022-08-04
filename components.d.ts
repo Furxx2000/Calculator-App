@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BaseKeyButton: typeof import('./src/components/UI/BaseKeyButton.vue')['default']
     BaseThemeControl: typeof import('./src/components/UI/BaseThemeControl.vue')['default']
     MainCalculator: typeof import('./src/components/Page/MainCalculator.vue')['default']
     TheDisplayWindow: typeof import('./src/components/Layout/TheDisplayWindow.vue')['default']
