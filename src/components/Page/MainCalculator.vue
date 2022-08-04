@@ -33,6 +33,26 @@ function initialize(isInitializeCurVal = false) {
 }
 
 function getKey(val: string) {
+  if (
+    inputVal.curVal.length >= 10 ||
+    (inputVal.curVal === "0" && val !== ".") ||
+    (inputVal.curVal.includes(".") && val === ".")
+  )
+    return;
+
+  if (val === "=") {
+    if (
+      !inputVal.curVal ||
+      !inputVal.lastOperator ||
+      (inputVal.curVal === "0" && inputVal.storedVal[0] === 0)
+    )
+      return;
+
+    calculateTotalValue(+inputVal.curVal, inputVal.lastOperator);
+    initialize();
+    return;
+  }
+
   if (val === "+" || val === "-" || val === "x" || val === "/") {
     if (inputVal.isTyping) {
       inputVal.lastOperator = val;
@@ -63,30 +83,11 @@ function getKey(val: string) {
     return;
   }
 
-  if (val === "=") {
-    if (
-      !inputVal.curVal ||
-      !inputVal.lastOperator ||
-      (inputVal.curVal === "0" && inputVal.storedVal[0] === 0)
-    )
-      return;
-
-    calculateTotalValue(+inputVal.curVal, inputVal.lastOperator);
-    initialize();
-    return;
-  }
-
-  if (
-    inputVal.curVal.length >= 10 ||
-    (inputVal.curVal === "0" && val !== ".") ||
-    (inputVal.curVal.includes(".") && val === ".")
-  )
-    return;
-
   if (inputVal.isTyping) {
     inputVal.curVal = "";
     inputVal.isTyping = false;
   }
+
   inputVal.curVal += val;
 }
 
@@ -112,7 +113,7 @@ function calculateTotalValue(val: number, operator: string): void {
   @include container(2rem, 1.5rem, 40rem);
   @include grid(1.5rem);
   @include desktop {
-    @include container(15vh, 1.5rem, 35rem);
+    @include container(12vh, 1.5rem, 35rem);
   }
 }
 </style>
