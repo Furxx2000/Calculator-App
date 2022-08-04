@@ -3,6 +3,99 @@ import {} from "./TheDisplayWindow.vue";
 
 const emit = defineEmits(["get-key"]);
 
+const keysData = [
+  {
+    name: "zero",
+    text: "0",
+    isSelected: false,
+  },
+  {
+    name: "one",
+    text: "1",
+    isSelected: false,
+  },
+  {
+    name: "two",
+    text: "2",
+    isSelected: false,
+  },
+  {
+    name: "three",
+    text: "3",
+    isSelected: false,
+  },
+  {
+    name: "four",
+    text: "4",
+    isSelected: false,
+  },
+  {
+    name: "five",
+    text: "5",
+    isSelected: false,
+  },
+  {
+    name: "six",
+    text: "6",
+    isSelected: false,
+  },
+  {
+    name: "seven",
+    text: "7",
+    isSelected: false,
+  },
+  {
+    name: "eight",
+    text: "8",
+    isSelected: false,
+  },
+  {
+    name: "nine",
+    text: "9",
+    isSelected: false,
+  },
+  {
+    name: "dot",
+    text: ".",
+    isSelected: false,
+  },
+  {
+    name: "plus",
+    text: "+",
+    isSelected: false,
+  },
+  {
+    name: "minus",
+    text: "-",
+    isSelected: false,
+  },
+  {
+    name: "multiply",
+    text: "x",
+    isSelected: false,
+  },
+  {
+    name: "slash",
+    text: "/",
+    isSelected: false,
+  },
+  {
+    name: "delete",
+    text: "del",
+    isSelected: false,
+  },
+  {
+    name: "reset",
+    text: "reset",
+    isSelected: false,
+  },
+  {
+    name: "equal",
+    text: "=",
+    isSelected: false,
+  },
+];
+
 function keyClick(e: MouseEvent) {
   const target = e.target as HTMLElement;
   const buttonEl =
@@ -33,71 +126,26 @@ function keyClick(e: MouseEvent) {
 
 <template>
   <section @click="keyClick" role="tablist">
-    <button class="seven" aria-selected="false" role="tab" tabindex="-1">
-      <span>7</span>
-    </button>
-    <button class="eight" aria-selected="false" role="tab" tabindex="-1">
-      <span>8</span>
-    </button>
-    <button class="nine" aria-selected="false" role="tab" tabindex="-1">
-      <span>9</span>
-    </button>
-    <button class="delete uppercase">
-      <span>del</span>
-    </button>
-    <button class="four" aria-selected="false" role="tab" tabindex="-1">
-      <span>4</span>
-    </button>
-    <button class="five" aria-selected="false" role="tab" tabindex="-1">
-      <span>5</span>
-    </button>
-    <button class="six" aria-selected="false" role="tab" tabindex="-1">
-      <span>6</span>
-    </button>
-    <button class="plus" aria-selected="false" role="tab" tabindex="-1">
-      <span>+</span>
-    </button>
-    <button class="one" aria-selected="false" role="tab" tabindex="-1">
-      <span>1</span>
-    </button>
-    <button class="two" aria-selected="false" role="tab" tabindex="-1">
-      <span>2</span>
-    </button>
-    <button class="three" aria-selected="false" role="tab" tabindex="-1">
-      <span>3</span>
-    </button>
-    <button class="minus" aria-selected="false" role="tab" tabindex="-1">
-      <span>-</span>
-    </button>
-    <button class="dot" aria-selected="false" role="tab" tabindex="-1">
-      <span>.</span>
-    </button>
-    <button class="zero" aria-selected="false" role="tab" tabindex="-1">
-      <span>0</span>
-    </button>
-    <button class="slash" aria-selected="false" role="tab" tabindex="-1">
-      <span>/</span>
-    </button>
-    <button class="multiply" aria-selected="false" role="tab" tabindex="-1">
-      <span>x</span>
-    </button>
-    <button
-      class="reset uppercase"
-      aria-selected="false"
-      role="tab"
-      tabindex="-1"
-    >
-      <span>reset</span>
-    </button>
-    <button class="equal" aria-selected="false" role="tab" tabindex="-1">
-      <span>=</span>
-    </button>
+    <BaseKeyButton
+      v-for="key in keysData"
+      :key="key.name"
+      :name="key.name"
+      :text="key.text"
+      :is-selected="key.isSelected"
+    />
   </section>
 </template>
 
 <style lang="scss" scoped>
 section {
   width: 100%;
+  row-gap: 1.1rem;
+  border-radius: 8px;
+  background-color: var(--keypad-bg);
+  grid-template-areas:
+    "seven eight nine delete" "four five six plus"
+    "one two three minus" "dot zero slash multiply" "reset reset equal equal";
+
   @include container(1.5rem, 1.5rem, 100%);
   @include grid(0.8rem);
   @include desktop {
@@ -105,115 +153,35 @@ section {
     @include grid(1.5rem);
     row-gap: 2rem;
   }
-  row-gap: 1.1rem;
-  grid-template-areas:
-    "seven eight nine delete" "four five six plus"
-    "one two three minus" "dot zero slash multiply" "reset reset equal equal";
-  background-color: var(--keypad-bg);
-  border-radius: 8px;
 }
 
-button {
-  position: relative;
-  appearance: none;
-  display: block;
-  font-size: $fs;
-  border: none;
-  border-radius: 6px;
-  transition: all 0.05s ease-in;
-  @include grid(0);
-  cursor: pointer;
+$keys1: zero, one, two, three, four, five, six, seven, eight, nine, dot, slash,
+  multiply, minus, plus;
+
+$keys2: delete, reset;
+
+@each $key in $keys1 {
+  .#{$key} {
+    @include keyType-1($key);
+  }
 }
 
-button:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-button[aria-selected="true"] {
-  transform: translateY(4px);
-  box-shadow: none;
-  background-color: var(--bg-key-1-shadow);
-}
-
-section > button > span {
-  position: absolute;
-  place-self: center;
-  padding-top: 6px;
-}
-
-.seven {
-  @include keyType-1(seven);
-}
-
-.eight {
-  @include keyType-1(eight);
-}
-
-.nine {
-  @include keyType-1(nine);
-}
-
-.delete {
-  @include keyType-2(delete);
-  font-size: 20px;
-}
-
-.four {
-  @include keyType-1(four);
-}
-
-.five {
-  @include keyType-1(five);
-}
-
-.six {
-  @include keyType-1(six);
-}
-
-.plus {
-  @include keyType-1(plus);
-}
-
-.one {
-  @include keyType-1(one);
-}
-
-.two {
-  @include keyType-1(two);
-}
-
-.three {
-  @include keyType-1(three);
-}
-
-.minus {
-  @include keyType-1(minus);
-}
-
-.dot {
-  @include keyType-1(dot);
-}
-
-.zero {
-  @include keyType-1(zero);
-}
-
-.slash {
-  @include keyType-1(slash);
-}
-
-.multiply {
-  @include keyType-1(multiply);
-}
-
-.reset {
-  @include keyType-2(reset);
-  font-size: 20px;
+@each $key in $keys2 {
+  .#{$key} {
+    font-size: 20px;
+    text-transform: uppercase;
+    @include keyType-2($key);
+    @include desktop {
+      font-size: 28px;
+    }
+  }
 }
 
 .equal {
-  @include keyType-3(equal);
   font-size: 1.2rem;
+  @include keyType-3(equal);
+  @include desktop {
+    font-size: 24px;
+  }
 }
 </style>
