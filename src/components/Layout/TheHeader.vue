@@ -2,7 +2,7 @@
 
 <template>
   <header class="header">
-    <div class="title">calc</div>
+    <h1 class="title">calc</h1>
     <BaseThemeControl />
   </header>
 </template>
@@ -13,6 +13,10 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 0.5rem;
+}
+
+h1 {
+  margin: 0;
 }
 
 .title {

@@ -101,7 +101,7 @@ function keyClick(e: MouseEvent) {
   const buttonEl =
     target.tagName.toLowerCase() === "button" ? target : target.parentElement!;
   const action = buttonEl?.textContent;
-  const btnContainer = buttonEl.closest("section");
+  const btnContainer = buttonEl.closest(".keypad");
 
   if (
     target.tagName.toLowerCase() !== "button" &&
@@ -125,7 +125,7 @@ function keyClick(e: MouseEvent) {
 </script>
 
 <template>
-  <section @click="keyClick" role="tablist">
+  <div class="keypad" @click="keyClick" role="tablist">
     <BaseKeyButton
       v-for="key in keysData"
       :key="key.name"
@@ -133,11 +133,11 @@ function keyClick(e: MouseEvent) {
       :text="key.text"
       :is-selected="key.isSelected"
     />
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-section {
+.keypad {
   width: 100%;
   row-gap: 1.1rem;
   border-radius: 8px;
