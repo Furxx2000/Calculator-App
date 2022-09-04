@@ -46,7 +46,7 @@ function changeTheme(): void {
 
 <template>
   <div class="theme-control">
-    <h4 class="uppercase">theme</h4>
+    <h2 class="uppercase">theme</h2>
     <div class="theme--panel">
       <div class="number">
         <span>1</span>
@@ -65,7 +65,7 @@ function changeTheme(): void {
   @include flex(2rem);
   align-items: flex-end;
 
-  h4 {
+  h2 {
     margin-bottom: 0.1rem;
     font-size: 12px;
     letter-spacing: 1.75px;
