@@ -1,106 +1,122 @@
 <template>
   <main class="calculator">
     <TheHeader />
-    <TheDisplayWindow :inputVal="inputVal.curVal" />
-    <TheKeypad @get-key="getKey" />
+    <TheDisplayWindow :calcVal="calcState.curVal" />
+    <TheKeypad @handle-calculate="calculator" />
   </main>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue';
 
-interface input {
+interface CalcType {
   curVal: string;
-  lastOperator: string;
-  isTyping: boolean;
-  storedVal: number[];
+  operator: string;
+  totalNumber: number;
+  operators: string;
+  clearDisplay: boolean;
 }
 
-const inputVal = reactive<input>({
+const calcState = reactive<CalcType>({
   curVal: '',
-  lastOperator: '',
-  isTyping: false,
-  storedVal: [],
+  operator: '',
+  totalNumber: 0,
+  operators: '+-x/=',
+  clearDisplay: false,
 });
 
-function initialize(isInitializeCurVal = false) {
-  if (isInitializeCurVal) {
-    inputVal.curVal = '';
-  }
-  inputVal.lastOperator = '';
-  inputVal.storedVal = [];
+function addNumber() {
+  calcState.curVal = (calcState.totalNumber + +calcState.curVal).toString();
+  calcState.totalNumber = 0;
 }
 
-function getKey(val: string) {
-  if (val === '+' || val === '-' || val === 'x' || val === '/') {
-    if (inputVal.isTyping) {
-      inputVal.lastOperator = val;
-      return;
-    }
-
-    inputVal.isTyping = true;
-
-    if (inputVal.lastOperator) {
-      calculateTotalValue(+inputVal.curVal, inputVal.lastOperator);
-      inputVal.lastOperator = val;
-      return;
-    }
-
-    inputVal.storedVal.push(+inputVal.curVal);
-    inputVal.lastOperator = val;
-
-    return;
-  }
-
-  if (val === '=') {
-    if (
-      !inputVal.curVal ||
-      !inputVal.lastOperator ||
-      (inputVal.curVal === '0' && inputVal.storedVal[0] === 0)
-    )
-      return;
-
-    calculateTotalValue(+inputVal.curVal, inputVal.lastOperator);
-    initialize();
-    return;
-  }
-
-  if (val === 'del') {
-    inputVal.curVal = '';
-    return;
-  }
-
-  if (val === 'reset') {
-    initialize(true);
-    return;
-  }
-
-  if (
-    inputVal.curVal.length >= 10 ||
-    (inputVal.curVal === '0' && val !== '.') ||
-    (inputVal.curVal.includes('.') && val === '.')
-  )
-    return;
-
-  if (inputVal.isTyping) {
-    inputVal.curVal = '';
-    inputVal.isTyping = false;
-  }
-
-  inputVal.curVal += val;
+function subtractNumber() {
+  calcState.curVal = (calcState.totalNumber - +calcState.curVal).toString();
+  calcState.totalNumber = 0;
 }
 
-function calculateTotalValue(val: number, operator: string): void {
-  if (operator === '+') {
-    inputVal.storedVal[0] += val;
-  } else if (operator === '-') {
-    inputVal.storedVal[0] -= val;
-  } else if (operator === 'x') {
-    inputVal.storedVal[0] *= val;
-  } else if (operator === '/') {
-    inputVal.storedVal[0] /= val;
+function multiplyNumber() {
+  calcState.curVal = (calcState.totalNumber * +calcState.curVal).toString();
+  calcState.totalNumber = 0;
+}
+
+function divideNumber() {
+  if (calcState.totalNumber / +calcState.curVal < 1) {
+    calcState.curVal = (calcState.totalNumber / +calcState.curVal)
+      .toFixed(4)
+      .toString();
+  } else {
+    calcState.curVal = (calcState.totalNumber / +calcState.curVal).toString();
   }
-  inputVal.curVal = inputVal.storedVal[0].toString().slice(0, 10);
+
+  calcState.totalNumber = 0;
+}
+
+function deleteNumber() {
+  if (!calcState.curVal) {
+    resetCalcState();
+    return;
+  }
+  calcState.curVal = '';
+}
+
+function resetCalcState() {
+  calcState.curVal = '';
+  calcState.operator = '';
+  calcState.totalNumber = 0;
+  calcState.clearDisplay = false;
+}
+
+function checkZeroAndComma(key: string) {
+  let isValid = true;
+
+  if (calcState.curVal === '0' && key === '0') {
+    isValid = false;
+    return isValid;
+  }
+
+  if (calcState.curVal.includes('.') && key === '.') {
+    isValid = false;
+    return isValid;
+  }
+
+  if (calcState.curVal.length >= 10) {
+    isValid = false;
+    return isValid;
+  }
+
+  return isValid;
+}
+
+function executeOperator(key: string) {
+  if (calcState.totalNumber) {
+    if (calcState.operator === '+') addNumber();
+    if (calcState.operator === '-') subtractNumber();
+    if (calcState.operator === 'x') multiplyNumber();
+    if (calcState.operator === '/') divideNumber();
+  }
+
+  calcState.operator = key;
+  calcState.clearDisplay = true;
+}
+
+function showDisplayNumber(key: string) {
+  if (calcState.clearDisplay) {
+    calcState.totalNumber = +calcState.curVal;
+    calcState.curVal = key;
+    calcState.clearDisplay = false;
+  } else {
+    calcState.curVal += key;
+  }
+}
+
+function calculator(key: string) {
+  if (key === 'del') deleteNumber();
+  if (key === 'reset') resetCalcState();
+  if (!checkZeroAndComma(key)) return;
+
+  if (calcState.operators.includes(key)) executeOperator(key);
+  if (key === '.' || !isNaN(+key)) showDisplayNumber(key);
 }
 </script>
 
