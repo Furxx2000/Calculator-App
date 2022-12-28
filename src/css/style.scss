@@ -7,10 +7,13 @@ body.theme-1 {
   --screen-bg: hsl(224, 36%, 15%);
   --bg-key-1: hsl(30, 25%, 89%);
   --bg-key-1-shadow: hsl(28, 16%, 65%);
+  --bg-key-1-hover: hsl(0, 0%, 100%);
   --bg-key-2: hsl(225, 21%, 49%);
   --bg-key-2-shadow: hsl(224, 28%, 35%);
+  --bg-key-2-hover: hsl(225, 51%, 76%);
   --bg-key-3: hsl(6, 63%, 50%);
   --bg-key-3-shadow: hsl(6, 70%, 34%);
+  --bg-key-3-hover: hsl(6, 93%, 67%);
   --text-header: hsl(0, 0%, 100%);
   --text-key-1: hsl(221, 14%, 31%);
   --text-key-2: hsl(0, 0%, 100%);
@@ -22,10 +25,13 @@ body.theme-2 {
   --screen-bg: hsl(0, 0%, 93%);
   --bg-key-1: hsl(45, 7%, 89%);
   --bg-key-1-shadow: hsl(35, 11%, 61%);
+  --bg-key-1-hover: hsl(0, 0%, 100%);
   --bg-key-2: hsl(185, 42%, 37%);
   --bg-key-2-shadow: hsl(185, 58%, 25%);
+  --bg-key-2-hover: hsl(185, 40%, 56%);
   --bg-key-3: hsl(25, 98%, 40%);
   --bg-key-3-shadow: hsl(25, 99%, 27%);
+  --bg-key-3-hover: hsl(25, 100%, 61%);
   --text-header: hsl(60, 10%, 19%);
   --text-key-1: hsl(60, 10%, 19%);
   --text-key-2: hsl(0, 0%, 100%);
@@ -37,10 +43,13 @@ body.theme-3 {
   --screen-bg: hsl(268, 71%, 12%);
   --bg-key-1: hsl(268, 47%, 21%);
   --bg-key-1-shadow: hsl(290, 70%, 36%);
+  --bg-key-1-hover: hsl(268, 54%, 44%);
   --bg-key-2: hsl(281, 89%, 26%);
   --bg-key-2-shadow: hsl(285, 91%, 52%);
+  --bg-key-2-hover: hsl(280, 56%, 44%);
   --bg-key-3: hsl(176, 100%, 44%);
   --bg-key-3-shadow: hsl(177, 92%, 70%);
+  --bg-key-3-hover: hsl(176, 100%, 79%);
   --text-header: hsl(52, 100%, 62%);
   --text-key-1: hsl(52, 100%, 62%);
   --text-key-2: hsl(0, 0%, 100%);
@@ -151,6 +160,10 @@ $fs: 32px;
   color: var(--text-key-1);
   background-color: var(--bg-key-1);
   box-shadow: 0 4px var(--bg-key-1-shadow);
+
+  &:hover {
+    background-color: var(--bg-key-1-hover);
+  }
 }
 
 @mixin keyType-2($area) {
@@ -158,6 +171,10 @@ $fs: 32px;
   color: var(--text-key-2);
   background-color: var(--bg-key-2);
   box-shadow: 0 4px var(--bg-key-2-shadow);
+
+  &:hover {
+    background-color: var(--bg-key-2-hover);
+  }
 }
 
 @mixin keyType-3($area) {
@@ -165,6 +182,10 @@ $fs: 32px;
   color: var(--text-key-2);
   background-color: var(--bg-key-3);
   box-shadow: 0 4px var(--bg-key-3-shadow);
+
+  &:hover {
+    background-color: var(--bg-key-3-hover);
+  }
 }
 
 .flex {
