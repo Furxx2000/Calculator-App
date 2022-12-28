@@ -27,17 +27,14 @@ const calcState = reactive<CalcType>({
 
 function addNumber() {
   calcState.curVal = (calcState.totalNumber + +calcState.curVal).toString();
-  calcState.totalNumber = 0;
 }
 
 function subtractNumber() {
   calcState.curVal = (calcState.totalNumber - +calcState.curVal).toString();
-  calcState.totalNumber = 0;
 }
 
 function multiplyNumber() {
   calcState.curVal = (calcState.totalNumber * +calcState.curVal).toString();
-  calcState.totalNumber = 0;
 }
 
 function divideNumber() {
@@ -48,8 +45,6 @@ function divideNumber() {
   } else {
     calcState.curVal = (calcState.totalNumber / +calcState.curVal).toString();
   }
-
-  calcState.totalNumber = 0;
 }
 
 function deleteNumber() {
@@ -70,7 +65,7 @@ function resetCalcState() {
 function checkZeroAndComma(key: string) {
   let isValid = true;
 
-  if (calcState.curVal === '0' && key === '0') {
+  if (calcState.curVal === '0' && key !== '.') {
     isValid = false;
     return isValid;
   }
@@ -94,6 +89,7 @@ function executeOperator(key: string) {
     if (calcState.operator === '-') subtractNumber();
     if (calcState.operator === 'x') multiplyNumber();
     if (calcState.operator === '/') divideNumber();
+    calcState.totalNumber = 0;
   }
 
   calcState.operator = key;
@@ -106,7 +102,8 @@ function showDisplayNumber(key: string) {
     calcState.curVal = key;
     calcState.clearDisplay = false;
   } else {
-    calcState.curVal += key;
+    if (!calcState.curVal && key === '.') calcState.curVal += '0.';
+    else calcState.curVal += key;
   }
 }
 
@@ -122,10 +119,9 @@ function calculator(key: string) {
 
 <style lang="scss" scoped>
 .calculator {
-  height: 100vh;
   margin: 0 auto;
   grid-template-rows: 1fr 2fr 9fr;
-  @include container(2rem, 1.5rem, 40rem);
+  @include container(0, 1.5rem, 40rem);
   @include grid(1.5rem);
   @include desktop {
     @include container(12vh, 1.5rem, 35rem);
