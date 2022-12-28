@@ -1,137 +1,38 @@
 <script setup lang="ts">
-import {} from './TheDisplayWindow.vue';
+import { ref } from '@vue/runtime-core';
+import { keysData } from '../../helpers/keys';
 
-const emit = defineEmits(['get-key']);
+const emit = defineEmits(['handleCalculate']);
+const refKeys = ref(keysData);
 
-const keysData = [
-  {
-    name: 'zero',
-    text: '0',
-    isSelected: false,
-  },
-  {
-    name: 'one',
-    text: '1',
-    isSelected: false,
-  },
-  {
-    name: 'two',
-    text: '2',
-    isSelected: false,
-  },
-  {
-    name: 'three',
-    text: '3',
-    isSelected: false,
-  },
-  {
-    name: 'four',
-    text: '4',
-    isSelected: false,
-  },
-  {
-    name: 'five',
-    text: '5',
-    isSelected: false,
-  },
-  {
-    name: 'six',
-    text: '6',
-    isSelected: false,
-  },
-  {
-    name: 'seven',
-    text: '7',
-    isSelected: false,
-  },
-  {
-    name: 'eight',
-    text: '8',
-    isSelected: false,
-  },
-  {
-    name: 'nine',
-    text: '9',
-    isSelected: false,
-  },
-  {
-    name: 'dot',
-    text: '.',
-    isSelected: false,
-  },
-  {
-    name: 'plus',
-    text: '+',
-    isSelected: false,
-  },
-  {
-    name: 'minus',
-    text: '-',
-    isSelected: false,
-  },
-  {
-    name: 'multiply',
-    text: 'x',
-    isSelected: false,
-  },
-  {
-    name: 'slash',
-    text: '/',
-    isSelected: false,
-  },
-  {
-    name: 'delete',
-    text: 'del',
-    isSelected: false,
-  },
-  {
-    name: 'reset',
-    text: 'reset',
-    isSelected: false,
-  },
-  {
-    name: 'equal',
-    text: '=',
-    isSelected: false,
-  },
-];
+function handleKeyClick(key: string) {
+  const operators = '+-x/';
 
-function keyClick(e: MouseEvent) {
-  const target = e.target as HTMLElement;
-  const buttonEl =
-    target.tagName.toLowerCase() === 'button' ? target : target.parentElement!;
-  const action = buttonEl?.textContent;
-  const btnContainer = buttonEl.closest('.keypad');
-
-  if (
-    target.tagName.toLowerCase() !== 'button' &&
-    target.tagName.toLowerCase() !== 'span'
-  )
-    return;
-
-  if (action === '+' || action === '-' || action === 'x' || action === '/') {
-    btnContainer
-      ?.querySelector("[aria-selected='true']")
-      ?.setAttribute('aria-selected', 'false');
-    buttonEl.setAttribute('aria-selected', 'true');
+  if (operators.includes(key)) {
+    const newArr = refKeys.value.map((k) => {
+      return {
+        ...k,
+        isSelected: k.text === key,
+      };
+    });
+    refKeys.value = newArr;
   } else {
-    btnContainer
-      ?.querySelector("[aria-selected='true']")
-      ?.setAttribute('aria-selected', 'false');
+    refKeys.value = keysData;
   }
 
-  emit('get-key', action);
+  emit('handleCalculate', key);
 }
 </script>
 
 <template>
-  <div class="keypad" @click="keyClick" role="tablist">
+  <div class="keypad">
     <BaseKeyButton
-      v-for="key in keysData"
+      v-for="key in refKeys"
       :key="key.name"
       :name="key.name"
       :text="key.text"
       :is-selected="key.isSelected"
+      :handleKeyClick="handleKeyClick"
     />
   </div>
 </template>
@@ -143,8 +44,8 @@ function keyClick(e: MouseEvent) {
   border-radius: 8px;
   background-color: var(--keypad-bg);
   grid-template-areas:
-    'seven eight nine delete' 'four five six plus'
-    'one two three minus' 'dot zero slash multiply' 'reset reset equal equal';
+    'seven eight nine clear' 'four five six add'
+    'one two three subtract' 'decimal zero divide multiply' 'reset reset equals equals';
 
   @include container(1.5rem, 1.5rem, 100%);
   @include grid(0.8rem);
@@ -155,10 +56,10 @@ function keyClick(e: MouseEvent) {
   }
 }
 
-$keys1: zero, one, two, three, four, five, six, seven, eight, nine, dot, slash,
-  multiply, minus, plus;
+$keys1: zero, one, two, three, four, five, six, seven, eight, nine, decimal,
+  divide, multiply, subtract, add;
 
-$keys2: delete, reset;
+$keys2: clear, reset;
 
 @each $key in $keys1 {
   .#{$key} {
@@ -177,9 +78,9 @@ $keys2: delete, reset;
   }
 }
 
-.equal {
+.equals {
   font-size: 1.2rem;
-  @include keyType-3(equal);
+  @include keyType-3(equals);
   @include desktop {
     font-size: 24px;
   }
