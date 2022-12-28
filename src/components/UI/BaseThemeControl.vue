@@ -104,6 +104,10 @@ function changeTheme(): void {
     border-radius: 50%;
     background-color: var(--bg-key-3);
     cursor: pointer;
+
+    &:hover {
+      background-color: var(--bg-key-3-hover);
+    }
   }
 }
 </style>
