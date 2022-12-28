@@ -4,15 +4,21 @@ import { toRefs } from '@vue/reactivity';
 interface Props {
   name: string;
   text: string;
-  isSelected: boolean;
+  isSelected?: boolean;
+  handleKeyClick: (key: string) => void;
 }
 
 const props = defineProps<Props>();
-const { name, text, isSelected } = toRefs(props);
+const { name, text, isSelected, handleKeyClick } = toRefs(props);
 </script>
 
 <template>
-  <button :class="name" :aria-selected="isSelected" role="tab" tabindex="-1">
+  <button
+    :id="name"
+    :class="name"
+    :aria-selected="isSelected"
+    @click="handleKeyClick(text)"
+  >
     <span>{{ text }}</span>
   </button>
 </template>
