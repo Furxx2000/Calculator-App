@@ -3,20 +3,27 @@ import { toRefs } from '@vue/reactivity';
 import { computed } from 'vue';
 
 interface Props {
-  inputVal: string;
+  calcVal: string;
 }
 
 const props = defineProps<Props>();
-const { inputVal } = toRefs(props);
+const { calcVal } = toRefs(props);
+// const val = computed(() => {
+//   return new Intl.NumberFormat('zh-TW', {
+//     maximumSignificantDigits: 10,
+//   }).format(+calcVal.value);
+// });
 const val = computed(() => {
-  return new Intl.NumberFormat('zh-TW', {
-    maximumSignificantDigits: 10,
-  }).format(+inputVal.value);
+  if (calcVal.value === '') {
+    return '0';
+  } else {
+    return calcVal.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
 });
 </script>
 
 <template>
-  <div class="display-window">{{ val }}</div>
+  <div id="display" class="display-window">{{ val }}</div>
 </template>
 
 <style lang="scss" scoped>
