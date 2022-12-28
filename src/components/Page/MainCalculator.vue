@@ -7,8 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import {} from "./MainCalculator.vue";
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 interface input {
   curVal: string;
@@ -18,22 +17,22 @@ interface input {
 }
 
 const inputVal = reactive<input>({
-  curVal: "",
-  lastOperator: "",
+  curVal: '',
+  lastOperator: '',
   isTyping: false,
   storedVal: [],
 });
 
 function initialize(isInitializeCurVal = false) {
   if (isInitializeCurVal) {
-    inputVal.curVal = "";
+    inputVal.curVal = '';
   }
-  inputVal.lastOperator = "";
+  inputVal.lastOperator = '';
   inputVal.storedVal = [];
 }
 
 function getKey(val: string) {
-  if (val === "+" || val === "-" || val === "x" || val === "/") {
+  if (val === '+' || val === '-' || val === 'x' || val === '/') {
     if (inputVal.isTyping) {
       inputVal.lastOperator = val;
       return;
@@ -53,11 +52,11 @@ function getKey(val: string) {
     return;
   }
 
-  if (val === "=") {
+  if (val === '=') {
     if (
       !inputVal.curVal ||
       !inputVal.lastOperator ||
-      (inputVal.curVal === "0" && inputVal.storedVal[0] === 0)
+      (inputVal.curVal === '0' && inputVal.storedVal[0] === 0)
     )
       return;
 
@@ -66,25 +65,25 @@ function getKey(val: string) {
     return;
   }
 
-  if (val === "del") {
-    inputVal.curVal = "";
+  if (val === 'del') {
+    inputVal.curVal = '';
     return;
   }
 
-  if (val === "reset") {
+  if (val === 'reset') {
     initialize(true);
     return;
   }
 
   if (
     inputVal.curVal.length >= 10 ||
-    (inputVal.curVal === "0" && val !== ".") ||
-    (inputVal.curVal.includes(".") && val === ".")
+    (inputVal.curVal === '0' && val !== '.') ||
+    (inputVal.curVal.includes('.') && val === '.')
   )
     return;
 
   if (inputVal.isTyping) {
-    inputVal.curVal = "";
+    inputVal.curVal = '';
     inputVal.isTyping = false;
   }
 
@@ -92,13 +91,13 @@ function getKey(val: string) {
 }
 
 function calculateTotalValue(val: number, operator: string): void {
-  if (operator === "+") {
+  if (operator === '+') {
     inputVal.storedVal[0] += val;
-  } else if (operator === "-") {
+  } else if (operator === '-') {
     inputVal.storedVal[0] -= val;
-  } else if (operator === "x") {
+  } else if (operator === 'x') {
     inputVal.storedVal[0] *= val;
-  } else if (operator === "/") {
+  } else if (operator === '/') {
     inputVal.storedVal[0] /= val;
   }
   inputVal.curVal = inputVal.storedVal[0].toString().slice(0, 10);

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { toRefs } from "@vue/reactivity";
-import {} from "./TheHeader.vue";
+import { toRefs } from '@vue/reactivity';
 
 interface Props {
   name: string;
@@ -39,7 +38,7 @@ button:active {
   box-shadow: none;
 }
 
-button[aria-selected="true"] {
+button[aria-selected='true'] {
   transform: translateY(4px);
   box-shadow: none;
   background-color: var(--bg-key-1-shadow);

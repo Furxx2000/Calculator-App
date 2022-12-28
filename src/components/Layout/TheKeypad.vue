@@ -1,97 +1,97 @@
 <script setup lang="ts">
-import {} from "./TheDisplayWindow.vue";
+import {} from './TheDisplayWindow.vue';
 
-const emit = defineEmits(["get-key"]);
+const emit = defineEmits(['get-key']);
 
 const keysData = [
   {
-    name: "zero",
-    text: "0",
+    name: 'zero',
+    text: '0',
     isSelected: false,
   },
   {
-    name: "one",
-    text: "1",
+    name: 'one',
+    text: '1',
     isSelected: false,
   },
   {
-    name: "two",
-    text: "2",
+    name: 'two',
+    text: '2',
     isSelected: false,
   },
   {
-    name: "three",
-    text: "3",
+    name: 'three',
+    text: '3',
     isSelected: false,
   },
   {
-    name: "four",
-    text: "4",
+    name: 'four',
+    text: '4',
     isSelected: false,
   },
   {
-    name: "five",
-    text: "5",
+    name: 'five',
+    text: '5',
     isSelected: false,
   },
   {
-    name: "six",
-    text: "6",
+    name: 'six',
+    text: '6',
     isSelected: false,
   },
   {
-    name: "seven",
-    text: "7",
+    name: 'seven',
+    text: '7',
     isSelected: false,
   },
   {
-    name: "eight",
-    text: "8",
+    name: 'eight',
+    text: '8',
     isSelected: false,
   },
   {
-    name: "nine",
-    text: "9",
+    name: 'nine',
+    text: '9',
     isSelected: false,
   },
   {
-    name: "dot",
-    text: ".",
+    name: 'dot',
+    text: '.',
     isSelected: false,
   },
   {
-    name: "plus",
-    text: "+",
+    name: 'plus',
+    text: '+',
     isSelected: false,
   },
   {
-    name: "minus",
-    text: "-",
+    name: 'minus',
+    text: '-',
     isSelected: false,
   },
   {
-    name: "multiply",
-    text: "x",
+    name: 'multiply',
+    text: 'x',
     isSelected: false,
   },
   {
-    name: "slash",
-    text: "/",
+    name: 'slash',
+    text: '/',
     isSelected: false,
   },
   {
-    name: "delete",
-    text: "del",
+    name: 'delete',
+    text: 'del',
     isSelected: false,
   },
   {
-    name: "reset",
-    text: "reset",
+    name: 'reset',
+    text: 'reset',
     isSelected: false,
   },
   {
-    name: "equal",
-    text: "=",
+    name: 'equal',
+    text: '=',
     isSelected: false,
   },
 ];
@@ -99,28 +99,28 @@ const keysData = [
 function keyClick(e: MouseEvent) {
   const target = e.target as HTMLElement;
   const buttonEl =
-    target.tagName.toLowerCase() === "button" ? target : target.parentElement!;
+    target.tagName.toLowerCase() === 'button' ? target : target.parentElement!;
   const action = buttonEl?.textContent;
-  const btnContainer = buttonEl.closest(".keypad");
+  const btnContainer = buttonEl.closest('.keypad');
 
   if (
-    target.tagName.toLowerCase() !== "button" &&
-    target.tagName.toLowerCase() !== "span"
+    target.tagName.toLowerCase() !== 'button' &&
+    target.tagName.toLowerCase() !== 'span'
   )
     return;
 
-  if (action === "+" || action === "-" || action === "x" || action === "/") {
+  if (action === '+' || action === '-' || action === 'x' || action === '/') {
     btnContainer
       ?.querySelector("[aria-selected='true']")
-      ?.setAttribute("aria-selected", "false");
-    buttonEl.setAttribute("aria-selected", "true");
+      ?.setAttribute('aria-selected', 'false');
+    buttonEl.setAttribute('aria-selected', 'true');
   } else {
     btnContainer
       ?.querySelector("[aria-selected='true']")
-      ?.setAttribute("aria-selected", "false");
+      ?.setAttribute('aria-selected', 'false');
   }
 
-  emit("get-key", action);
+  emit('get-key', action);
 }
 </script>
 
@@ -143,8 +143,8 @@ function keyClick(e: MouseEvent) {
   border-radius: 8px;
   background-color: var(--keypad-bg);
   grid-template-areas:
-    "seven eight nine delete" "four five six plus"
-    "one two three minus" "dot zero slash multiply" "reset reset equal equal";
+    'seven eight nine delete' 'four five six plus'
+    'one two three minus' 'dot zero slash multiply' 'reset reset equal equal';
 
   @include container(1.5rem, 1.5rem, 100%);
   @include grid(0.8rem);

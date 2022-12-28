@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import {} from "./BaseKey.vue";
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 interface themeControl {
   idx: number;
@@ -10,29 +9,29 @@ interface themeControl {
 
 const themeSelector = reactive<themeControl>({
   idx: 0,
-  curTheme: "theme-1",
+  curTheme: 'theme-1',
   theme: [
     {
-      theme: "theme-1",
-      position: "flex-start",
+      theme: 'theme-1',
+      position: 'flex-start',
     },
     {
-      theme: "theme-2",
-      position: "center",
+      theme: 'theme-2',
+      position: 'center',
     },
     {
-      theme: "theme-3",
-      position: "flex-end",
+      theme: 'theme-3',
+      position: 'flex-end',
     },
   ],
 });
 
 function changeTheme(): void {
-  const themeSelect = document.querySelector(".bar") as HTMLDivElement;
+  const themeSelect = document.querySelector('.bar') as HTMLDivElement;
   if (themeSelector.idx === 2) {
     themeSelector.idx = 0;
     document.body.classList.remove(themeSelector.curTheme);
-    document.body.classList.add("theme-1");
+    document.body.classList.add('theme-1');
   } else themeSelector.idx++;
 
   themeSelect.style.justifyContent =

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { toRefs } from "@vue/reactivity";
-import { computed } from "vue";
-import {} from "./TheHeader.vue";
+import { toRefs } from '@vue/reactivity';
+import { computed } from 'vue';
 
 interface Props {
   inputVal: string;
@@ -10,7 +9,7 @@ interface Props {
 const props = defineProps<Props>();
 const { inputVal } = toRefs(props);
 const val = computed(() => {
-  return new Intl.NumberFormat("zh-TW", {
+  return new Intl.NumberFormat('zh-TW', {
     maximumSignificantDigits: 10,
   }).format(+inputVal.value);
 });
