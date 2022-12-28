@@ -8,11 +8,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const { calcVal } = toRefs(props);
-// const val = computed(() => {
-//   return new Intl.NumberFormat('zh-TW', {
-//     maximumSignificantDigits: 10,
-//   }).format(+calcVal.value);
-// });
+
 const val = computed(() => {
   if (calcVal.value === '') {
     return '0';
