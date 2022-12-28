@@ -20,8 +20,10 @@ onBeforeMount(() => {
 }
 
 body {
+  display: grid;
+  align-items: center;
   line-height: 1.5;
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'League Spartan', sans-serif;
   background-color: var(--main-bg);
   margin: 0;
