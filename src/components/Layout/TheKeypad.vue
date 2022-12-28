@@ -2,6 +2,12 @@
 import { ref } from '@vue/runtime-core';
 import { keysData } from '../../helpers/keys';
 
+interface Key {
+  name: string;
+  text: string;
+  isSelected?: boolean;
+}
+
 const emit = defineEmits(['handleCalculate']);
 const refKeys = ref(keysData);
 
@@ -9,7 +15,7 @@ function handleKeyClick(key: string) {
   const operators = '+-x/';
 
   if (operators.includes(key)) {
-    const newArr = refKeys.value.map((k) => {
+    const newArr = refKeys.value.map((k: Key) => {
       return {
         ...k,
         isSelected: k.text === key,
